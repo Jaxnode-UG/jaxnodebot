@@ -1,0 +1,12 @@
+{
+  "name": "jaxnodebot",
+  "version": "1.0.0",
+  "description": "A Twitter Bot for the JaxNode User Group",
+  "main": "index.js",
+  "author": "David Fekke <david@fekke.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "twit": "^2.2.5"
+  }
+}
