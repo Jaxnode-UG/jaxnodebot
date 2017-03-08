@@ -18,25 +18,35 @@ stream.on('tweet', function (tweet) {
   const hasWhat = tweetwords.filter(w => w.toUpperCase() === 'WHAT');
   if (hasWhat.length > 0) {
       meeting.what(r => {
-	const nextMeetingTopic = `@${tweet.user.screen_name} The next meeting is on '${r}'`;
-	tweetNow(nextMeetingTopic);
+	      const nextMeetingTopic = `@${tweet.user.screen_name} The next meeting is on '${r}'`;
+	      try {
+          tweetNow(nextMeetingTopic);  
+        } catch (err) {
+          console.error(err); 
+        }
       });
   }
   const hasWhen = tweetwords.filter(w => w.toUpperCase() === 'WHEN');
   if (hasWhen.length > 0) {
       meeting.when(w => {
         const neetMeetingTime = `@${tweet.user.screen_name} Our next meeting will be on ${w}`;
-	tweetNow(neetMeetingTime);
+	      try {
+         tweetNow(neetMeetingTime); 
+        } catch (err) {
+          console.error(err);
+        }
       });
   }
   const hasWhere = tweetwords.filter(w => w.toUpperCase() === 'WHERE');
   if (hasWhere.length > 0) {
       meeting.where(r => {
-	const meetingLocation = r;
-        tweetNow(`@${tweet.user.screen_name} ${r}`);
+	      try {
+          tweetNow(`@${tweet.user.screen_name} ${r}`);  
+        } catch (err) {
+          console.error(err);
+        }
       })
   }
-  // meeting
 });
 
 function tweetNow(tweetTxt) {  
