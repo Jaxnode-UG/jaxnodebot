@@ -69,6 +69,10 @@ const userStream = Twitter.stream('user');
 userStream.on('follow', function (event) {  
     console.log('Follow Event is running');
     //let name = event.source.name;
-    let screenName = event.source.screen_name;
-    tweetNow('@' + screenName + ' Thank you for the following @jaxnode.');
+    var screenName = event.source.screen_name;
+    try {
+	tweetNow('@' + screenName + ' Thank you for the following @jaxnode.');
+    } catch (err) {
+    	console.error(err);
+    }
 });
