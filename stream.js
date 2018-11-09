@@ -76,3 +76,5 @@ userStream.on('follow', function (event) {
     	console.error(err);
     }
 });
+
+require('http').createServer().listen(3000);
