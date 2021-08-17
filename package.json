@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "node-fetch": "^1.6.3",
+    "slackbots": "^1.2.0",
     "twit": "^2.2.5"
   }
 }
