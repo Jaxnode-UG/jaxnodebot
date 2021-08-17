@@ -18,6 +18,7 @@ function followed(event) {
     console.log('Follow Event is running');
     //let name = event.source.name;
     let screenName = event.source.screen_name;
+    console.log(`@${screenName} is following @jaxnode.`);
     tweetNow('@' + screenName + ' Thank you for the following @jaxnode.');
 }
 

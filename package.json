@@ -9,7 +9,8 @@
     "start": "node stream.js"
   },
   "dependencies": {
-    "node-fetch": "^1.6.3",
-    "twit": "^2.2.5"
+    "axios": "^0.21.1",
+    "node-fetch": "^2.6.1",
+    "twit": "^2.2.11"
   }
 }

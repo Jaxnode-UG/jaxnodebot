@@ -1,29 +1,34 @@
 
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
+const axios = require('axios');
 
 function when(cb) {
     return meetingPromise().then(json => {
-        cb(json.meeting.time);
+        cb(formateDate(json.data[0].time));
     });
 }
 
 function where(cb) {
     return meetingPromise().then(json => {
-        const maplink = `We meet at ${json.meeting.venue.name} https://www.google.com/maps/place/${json.meeting.venue.name}/@${json.meeting.venue.lat},${json.meeting.venue.lon},15z`
+        const maplink = `We meet at ${json.data[0].venue.name} https://www.google.com/maps/place/${json.data[0].venue.name}/@${json.data[0].venue.lat},${json.data[0].venue.lon},15z`
         cb(maplink);
     });
 }
 
 function what(cb) {
     return meetingPromise().then(json => {
-        cb(json.meeting.name);
+        cb(json.data[0].name);
     });
 }
 
 function meetingPromise() {
-    return fetch('https://www.jaxnode.com/v1/api/meeting')
-        .catch(err => console.error(err))
-        .then(response => response.json());
+    const promise = axios.get('https://api.meetup.com/Jax-Node-js-UG/events?page=2');
+    return promise;
+}
+
+function formateDate(time) {
+    const date = new Date(time);
+    return date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"2-digit", minute:"2-digit"});
 }
 
 exports.when = when;
