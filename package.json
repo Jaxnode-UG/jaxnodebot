@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "twit": "^2.2.11",
+    "node-fetch": "^2.6.1",
     "slackbots": "^1.2.0",
-    "node-fetch": "^2.6.1"
+    "twit": "^2.2.11"
   }
 }
