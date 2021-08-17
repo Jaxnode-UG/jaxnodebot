@@ -1,5 +1,5 @@
 
-const token = `xoxb-2394464722785-2387116863138-TU5sqX7nTYtJTY1pKO7TJaJU`;
+const token = process.env.SLACKBOT_TOKEN;
 
 const SlackBot = require("slackbots");
 const channel = "general";
