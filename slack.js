@@ -1,12 +1,12 @@
 
 const token = process.env.SLACKBOT_TOKEN;
 
-const SlackBot = require("slackbots");
+const SlackBot = require('slackbots');
 const channel = "general";
 
 const bot = new SlackBot({
     token: token,
-    name: "Jaxnodebot"
+    name: 'Jaxnodebot'
 });
 
 // bot.on("start", function() {
