@@ -2,7 +2,8 @@
 const token = process.env.SLACKBOT_TOKEN;
 
 const SlackBot = require('slackbots');
-const channel = "general";
+const meeting = require('./meeting.js');
+const channel = 'general';
 
 const bot = new SlackBot({
     token: token,
@@ -14,37 +15,48 @@ const bot = new SlackBot({
 //     console.log("Hello world!");
 // });
 
-bot.on("message", function(data) {
-    if (data.type !== "message") {
+bot.on('message', function(data) {
+    if (data.type !== 'message') {
         return;
     }
 
-    handleMessage(data.text);
+    const message_words = data.text.split(' ');
+
+    const hasWhat = message_words.filter(w => w.toUpperCase() === 'WHAT');
+    if (hasWhat.length > 0) {
+        meeting.what(r => {
+            const nextMeetingTopic = `<@${data.user}> The next meeting is on '${r}'`;
+            try {
+                sendReply(nextMeetingTopic);
+            } catch (err) {
+                console.error(err); 
+            }
+        });
+    }
+
+    const hasWhen = message_words.filter(w => w.toUpperCase() === 'WHEN');
+    if (hasWhen.length > 0) {
+        meeting.when(w => {
+            const neetMeetingTime = `<@${data.user}> Our next meeting will be on ${w}`;
+            try {
+                sendReply(neetMeetingTime); 
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    }
+    const hasWhere = message_words.filter(w => w.toUpperCase() === 'WHERE');
+    if (hasWhere.length > 0) {
+        meeting.where(r => {
+            try {
+                sendReply(`<@${data.user}> ${r}`);  
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    }
 });
 
-function handleMessage(message) {
-    switch(message) {
-        case "hi":
-        case "hello":
-            sendGreeting();
-            break;
-        default:
-            return;
-    }
-}
-
-function sendGreeting() {
-    const greeting = getGreeting();
-    bot.postMessageToChannel(channel, greeting);
-}
-
-function getGreeting() {
-    const greetings = [
-        "hello!",
-        "hi there!",
-        "cheerio!",
-        "how do you do!",
-        "¡hola!"
-    ];
-    return greetings[Math.floor(Math.random() * greetings.length)];
+function sendReply(message) {
+    bot.postMessageToChannel(channel, message);
 }
