@@ -9,7 +9,7 @@ const config = {
 
 const Twitter = new twit(config);
 
-const stream = Twitter.stream('statuses/filter', { track: ['$AAPL', 'AAPL'] }); 
+const stream = Twitter.stream('statuses/filter', { track: ['KABUL'] }); 
 
 stream.on('tweet', function (tweet) {
     console.log(tweet.text);
