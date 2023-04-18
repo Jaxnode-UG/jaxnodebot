@@ -9,7 +9,7 @@
     "start": "node stream.js"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "node-fetch": "^2.6.1",
     "slackbots": "^1.2.0",
     "twit": "^2.2.11"
